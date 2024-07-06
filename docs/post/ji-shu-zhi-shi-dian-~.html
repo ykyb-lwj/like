@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/170231537?v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="##### 1.软件开发的流程是什么样的？
+
+~~~
+1. 需求分析：确定软件的目标用户和使用场景，收集用户需求，产出需求规格说明书。">
+<meta property="og:title" content="技术知识点~">
+<meta property="og:description" content="##### 1.软件开发的流程是什么样的？
+
+~~~
+1. 需求分析：确定软件的目标用户和使用场景，收集用户需求，产出需求规格说明书。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ykyb-lwj.github.io/like/post/ji-shu-zhi-shi-dian-~.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/170231537?v=4">
+<title>技术知识点~</title>
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">技术知识点~</h1>
+<div class="title-right">
+    <a href="https://ykyb-lwj.github.io/like" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/ykyb-lwj/like/issues/4" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h5>1.软件开发的流程是什么样的？</h5>
+<pre class="notranslate"><code class="notranslate">1. 需求分析：确定软件的目标用户和使用场景，收集用户需求，产出需求规格说明书。
+
+2. 设计：系统设计，确定软件的架构和组件，数据库设计，用户界面设计，接口设计。
+
+3. 编码：根据设计文档编写代码。
+
+4. 测试：
+
+   ​	单元测试：测试单个模块或组件。
+   ​	集成测试：测试模块或组件间的交互。
+   ​	系统测试：测试整个系统的功能。
+   ​	性能测试：评估软件的性能和响应时间。
+   ​	安全测试：确保软件的安全性。
+
+5. 上线和运维：环境安装和配置，将软件部署到生产环境。
+</code></pre>
+<h5>2.说一下你对JWT的理解</h5>
+<pre class="notranslate"><code class="notranslate">JWT（JSON Web Token）是一种基于JSON的轻量级安全协议。JWT可以被用于身份验证和信息交换，它允许你以JSON对象的形式安全地在用户和服务器之间传递信息。
+
+一个JWT实际上由三部分组成，用点（.）分隔：
+Header（头部）：通常包含两部分：token的类型（这里是JWT）和所使用的签名算法（如HS256或RS256）。
+Payload（负载）：包含了所谓的Claims（声明），它们是关于实体（通常是用户）和其他数据的声明。声明可以是注册的（如iss、exp、sub等）或公共的（自定义声明）。
+Signature（签名）：用于验证消息在传输过程中未被篡改，并且，对于使用私钥签名的token，还可以验证发送者的身份。
+</code></pre>
+<h5>3.基于JWT实现登录校验的流程是什么样的</h5>
+<pre class="notranslate"><code class="notranslate">1.用户登录请求：用户向认证服务器发送用户名和密码。
+2.验证用户身份：认证服务器接收到请求后，验证用户名和密码的正确性。
+3.生成JWT：如果用户身份验证成功，认证服务器会生成一个JWT。这个Token包含了用户的身份信息和其他可能需要的声明（claims），例如用户ID、角色、权限等。
+4.Token签名：使用服务器端的密钥对JWT进行签名，确保JWT的完整性和真实性。
+5.发送Token给客户端：认证服务器将JWT返回给客户端。客户端可以将其存储在本地，例如localStorage、sessionStorage或Cookie。
+6.客户端存储Token：客户端收到JWT后，将其保存在本地存储中，以便在后续请求中使用。
+7.客户端请求受保护资源：当客户端需要访问受保护的资源时，它将JWT添加到HTTP请求的Authorization头部中。
+8.服务器验证Token：受保护资源的服务器接收到请求后，首先验证JWT的签名是否有效，以确保Token未被篡改。然后检查Token是否过期，如果Token有效且未过期，服务器会解析Token中的声明，以确定用户的权限和身份。如果Token验证通过，服务器将提供请求的受保护资源。
+</code></pre>
+<h5>4.软件环境的分类有哪些</h5>
+<pre class="notranslate"><code class="notranslate">1.开发环境：提供给开发人员编写代码、测试新功能和修复bug的环境
+
+2.测试环境：提供给测试人员进行项目测试的环境
+
+3.生产环境：软件正式发布后运行的环境，供最终用户使用
+</code></pre>
+<h5>5.数据库中表之间的关系分为几种，分别怎么表示</h5>
+<pre class="notranslate"><code class="notranslate">数据库中的表之间的关系主要分为以下几种类型，并且每种关系都有其特定的表示方法：
+
+1. 一对一关系（One-to-One Relationship）：
+   - 一个表中的每条记录只与另一个表中的一条记录相关联。
+   - 表示方法：可以添加一个外键字段，并设置外键唯一。
+
+2. 一对多关系（One-to-Many Relationship）：
+   - 一个表中的每条记录可以与另一个表中的多条记录相关联。
+   - 表示方法：在多的一方表中添加一个外键字段，该字段引用主表的主键。
+	一个分类对应多个菜品
+3. 多对多关系（Many-to-Many Relationship）：
+   - 两个表中的记录可以相互关联多个。
+   - 表示方法：通常需要一个中间表（也称为连接表或关联表），这个表包含两个外键字段，分别指向两个主表的主键。
+</code></pre>
+<h5>6.什么是反向代理和负载均衡</h5>
+<pre class="notranslate"><code class="notranslate">反向代理是一种服务器，它位于一个或多个原始服务器（也称为后端服务器）的前端。客户端不会直接与原始服务器通信，反向代理主要用于客户端和服务器之间的请求转发。
+反向代理的主要作用包括：
+- 隐藏原始服务器：客户端不能直接访问原始服务器，这可以提高安全性。
+- 缓存静态内容：反向代理可以缓存原始服务器的内容，减少对原始服务器的请求，提高响应速度。
+- SSL终端：反向代理可以处理SSL加密和解密，减轻原始服务器的负担。
+- 访问控制：反向代理可以控制对原始服务器的访问，例如基于IP地址或地理位置的访问限制。
+
+负载均衡是一种将网络流量和用户请求分配到多个服务器上的技术，以确保没有单个服务器因过载而影响性能或导致服务中断。
+负载均衡的主要目的包括：
+- 提高可用性：通过分散请求到多个服务器，即使某个服务器失败，其他服务器仍然可以处理请求。
+- 提高性能：通过合理分配请求，避免单个服务器过载，提高整体性能。
+- 扩展性：随着用户数量的增加，可以通过增加更多的服务器来扩展系统。
+- 故障转移：当一个服务器出现问题时，负载均衡器可以自动将流量转移到其他健康的服务器。
+</code></pre>
+<h5>7.列举几个负载均衡策略</h5>
+<pre class="notranslate"><code class="notranslate">轮询（Round Robin）：这是默认的负载均衡策略，NGINX 会依次将请求分配给后端服务器，实现简单的循环分配。如果某个服务器宕机，NGINX 会自动将其从列表中剔除。
+
+权重（Weight）：在轮询的基础上，可以为每个后端服务器指定权重，权重越高的服务器将获得更多的请求。适用于后端服务器性能不均的情况。
+
+IP Hash：根据客户端的 IP 地址进行哈希，确保来自同一 IP 的请求总是被分配到同一个后端服务器上，这有助于解决需要保持会话状态的应用问题。
+
+Least Connections：将请求分配给当前活跃连接数最少的服务器，适合请求处理时间差异较大的场景。
+
+URL Hash：第三方模块，根据请求的 URL 进行哈希，确保相同的 URL 请求总是被分配到同一个后端服务器上，适合配合缓存使用，提高缓存命中率。
+
+Fair：一种第三方策略，根据后端服务器的响应时间来分配请求，响应时间短的服务器将获得更多的请求。
+</code></pre>
+<h5>8.knife4j是什么？有什么作用？常用注解有哪些</h5>
+<pre class="notranslate"><code class="notranslate">Knife4j是一个为 Swagger 生成更优雅的 API 文档的增强库，它基于 Swagger 和 Swagger-UI 进行二次开发，提供了更丰富的功能和更好的用户体验。它允许开发者通过注解的方式定义 API，然后自动生成 API 文档。
+
+Knife4j 的作用：
+1. 增强的 UI 界面：提供比 Swagger-UI 更美观、更友好的界面。
+2. 接口文档管理：支持在线标记接口文档、分类接口等。
+3. 接口调试：提供接口在线调试功能，方便开发者测试 API。
+
+Knife4j 常用注解：
+1. @ApiOperation：描述 API 的摘要信息。
+2. @ApiModel：用于描述一个模型（Model）的类或接口。
+3. @ApiModelProperty：用于描述模型属性的注解，可以指定属性的名称、描述、是否必须等。
+4. @Api: 描述接口信息，一般加在Controller类上。
+</code></pre>
+<h5>9.项目中使用MD5对密码进行加密存在什么问题？有什么改进方案？</h5>
+<pre class="notranslate"><code class="notranslate">对于相同的明文，MD5加密后的结果都是一样的，所以MD5加密存在暴力破解的安全风险。
+可以通过加入随机的盐值，提高安全性。这样就可以做到对于相同的明文，由于盐值的不同，加密后的结果也是不同的。
+</code></pre>
+<h5>10.什么是DTO、VO、PO、entity</h5>
+<pre class="notranslate"><code class="notranslate">1. Entity（实体）：
+   - 在面向对象编程中，Entity 通常指的是现实世界中的一个对象或概念，它在系统中被抽象为一个类。
+   - 在数据库领域，Entity 可以指代数据库中的一个表，代表现实世界中的一个实体，具有属性和关系。
+
+2. PO（Persistent Object，持久化对象）：
+   - PO 是指那些与数据库表结构一一对应的对象，它们通常用于数据持久化操作。
+
+3. VO（View Object，视图对象）：
+   - VO 是用来封装前端所需要的数据。
+
+4. DTO（Data Transfer Object，数据传输对象）：
+   - DTO 是用于在客户端和服务器之间传输数据的对象。
+   - DTO 通常用于远程调用和 API 响应中，它们可以被序列化和反序列化，以便于通过网络传输。
+
+在实际开发中，这些术语有助于区分不同类型的对象和它们的职责，从而帮助开发者设计出更加清晰和模块化的系统。
+</code></pre>
+<h5>11.Maven中的继承和聚合分别是什么？有什么作用？</h5>
+<pre class="notranslate"><code class="notranslate">继承（Inheritance）
+继承是Maven项目中父子关系的一种表现。当你创建一个多模块项目时，子模块（子项目）可以继承父模块（父项目）的配置。这意味着子模块可以继承父模块的属性和配置。
+继承的作用主要是为了减少重复配置，提高项目的可维护性。通过继承，你可以在父模块中定义通用的配置，然后在子模块中进行特定的调整或覆盖。
+
+聚合（Aggregation）
+聚合是指在一个多模块项目中，一个父模块可以聚合多个子模块。这种关系允许父模块在构建过程中包含子模块的构建过程，以及在生成项目报告时包含子模块的报告。
+聚合的作用包括：
+- 统一构建：父模块可以触发所有子模块的构建过程，使得构建整个项目更加方便。
+- 统一部署：父模块可以统一管理子模块的部署过程，包括将所有子模块打包到一个父模块的聚合包中。
+- 统一报告：父模块可以生成包含所有子模块报告的聚合报告，便于查看整个项目的构建状态和质量。
+
+总结
+- 继承 主要用于配置的共享和重用，减少重复工作。
+- 聚合 主要用于构建和报告的统一管理，提高项目的组织性和一致性。
+
+在Maven中，继承和聚合是构建大型项目时不可或缺的工具，它们帮助开发者更有效地管理和维护项目结构。
+</code></pre>
+<h5>12.聊一下你对ThreadLocal的理解</h5>
+<pre class="notranslate"><code class="notranslate">ThreadLocal 是 Java 中的一个类，它提供了线程局部变量的存储方式，使得每个线程可以拥有自己独立的实例变量副本。ThreadLocal的设计初衷是为了解决多线程环境下的共享变量问题，允许每个线程访问自己的数据副本。
+
+以下是对ThreadLocal的一些理解：
+1. 线程隔离性：ThreadLocal为每个线程提供了一个独立的数据副本，这意味着线程之间不会相互干扰，每个线程只能访问自己的数据。
+
+2. 内存管理：由于每个线程都有自己的数据副本，ThreadLocal可以减少内存的共享和竞争，从而降低内存管理的复杂性。
+
+3. 使用场景：ThreadLocal适用于那些需要在线程之间隔离状态的场景。例如，数据库连接、事务管理、用户会话信息等。
+
+4. 生命周期管理：ThreadLocal的数据在线程结束时不会自动清理，因此需要手动调用 remove() 方法来释放资源，防止内存泄漏。
+
+5. 实现原理：在 Java 中，ThreadLocal 通过 ThreadLocalMap 来实现，这是一个存储每个线程数据的键值对集合。每个线程都有一个 ThreadLocalMap，它与线程的生命周期绑定。
+</code></pre>
+<h5>13.前端提交请求参数的形式大概有哪几种？对应的后端如何接收？</h5>
+<pre class="notranslate"><code class="notranslate">请求参数形式一：在请求体中提交json格式的参数。后端需要封装对应的DTO，并使用@RequestBody注解修饰。
+
+请求参数形式二：在请求路径后面通过?key=value的形式提交参数。后端可以封装对应的DTO，也可以声明多个参数，参数名和提交的参数名保持一致即可。无须使用@RequestBody注解。
+
+请求参数形式三：通过路径参数提交参数。后端通过@PathVariable注解接收。
+</code></pre>
+<h5>14.软件开发中的三层架构是什么？每层的作用是什么？</h5>
+<pre class="notranslate"><code class="notranslate">三层架构是一种将应用程序分为三个逻辑层的软件设计模式。这种架构模式广泛应用于软件开发中，特别是在企业级应用程序中。三层架构通常包括以下三个层次：
+1. 表现层/控制层：
+   - 作用：负责处理用户界面和用户交互。负责接收前端请求和参数，调用业务层实现业务逻辑，返回结果给前端。
+
+2. 业务逻辑层：
+   - 作用：包含应用程序的核心逻辑，处理应用程序的业务规则和业务流程。这一层是应用程序的大脑，负责处理数据的业务逻辑，如计算、数据处理、业务决策等。
+
+3. 数据访问层：
+   - 作用：负责与数据库或其他持久化存储进行交互，执行数据的增删改查（CRUD）操作。这一层封装了所有与数据存储相关的逻辑，使得业务逻辑层可以不直接与数据库交互。
+
+三层架构的优势：
+- 分离关注点：每一层只关注自己的职责，降低了耦合度，提高了代码的可维护性和可扩展性。
+- 可维护性：由于每层的职责清晰，开发和维护变得更加容易。
+- 可测试性：每一层可以独立测试，提高了测试的效率和覆盖率。
+- 可重用性：业务逻辑层可以被不同的表示层重用，提高了代码的重用性。
+- 灵活性：可以独立地替换或升级某一层，而不影响其他层。
+
+三层架构提供了一种清晰的方式来组织大型应用程序，使得开发团队可以更加高效地协作和维护代码。然而，它也需要团队成员对每一层的职责有清晰的认识，并合理地分配工作。
+</code></pre>
+<h5>15.Maven分模块开发的好处？</h5>
+<pre class="notranslate"><code class="notranslate">Maven 分模块开发是一种将大型项目分解为多个较小、功能独立的模块的方法。使用 Maven 进行模块化开发可以带来以下好处：
+
+1. 提高可维护性：模块化使得项目结构更加清晰，每个模块负责特定的功能，易于理解和维护。
+
+2. 便于团队协作：在大型团队中，模块化允许多个开发人员或团队并行工作在不同的模块上，减少冲突和依赖问题。
+
+3. 重用性：模块化使得代码重用变得更加容易。公共的代码可以放在共享模块中，被其他模块引用。
+
+4. 简化构建过程：Maven 可以为每个模块独立构建，也可以一次性构建整个项目，提供了灵活性。
+
+5. 独立部署：模块化允许单独部署或更新项目中的特定模块，而不需要重新部署整个应用程序。
+
+6. 更好的组织结构：模块化帮助开发者更好地组织代码，每个模块包含自己的资源和依赖，易于管理。
+
+7. 易于测试：模块化使得对单个模块进行单元测试和集成测试变得更加容易。
+
+Maven分模块开发通过提供清晰的项目结构和强大的依赖管理，使得大型项目的构建、维护和扩展变得更加高效和可管理。
+</code></pre>
+<h5>16.redis常用的数据类型有哪些？各自有什么特点？</h5>
+<pre class="notranslate"><code class="notranslate">Redis 是一个高性能的键值存储系统，它支持多种数据类型，每种类型都有其独特的用途和特点。以下是 Redis 中常用的一些数据类型及其特点：
+
+1. 字符串（String）
+   - 基本的数据存储单元，一个键对应一个值。
+   - 字符串类型是二进制安全的，可以存储任何数据，例如整数、浮点数、字符串等。
+   - 支持对字符串进行追加、截取、设置和获取子字符串等操作。
+
+2. 列表（List）
+   - 列表是简单的字符串列表，按照插入顺序排序。
+   - 可以作为栈（先进后出）或队列（先进先出）使用。
+   - 支持在列表两端进行插入和删除操作。
+
+3. 集合（Set）
+   - 无序集合，自动去重。
+   - 支持添加、删除、检查成员等操作。
+   - 可以进行集合间的并集、交集、差集操作。
+
+4. 有序集合（Sorted Set）
+   - 类似于 Set，但每个元素都有一个分数（score）与之关联。
+   - 元素会根据分数进行排序。
+   - 支持范围查询，可以获取指定分数范围内的元素。
+
+5. 哈希（Hash）
+   - 可以存储键值对集合。
+   - 每个哈希可以存储多个字段，字段名是键，字段值是值。
+   - 支持对哈希进行添加、删除、获取单个字段、获取所有字段等操作。
+</code></pre>
+<h5>17.聊一下微信支付流程</h5>
+<pre class="notranslate"><code class="notranslate">微信支付在小程序中是一个常见的功能，它允许用户在小程序内完成支付操作。以下是小程序中微信支付的基本流程：
+
+1. 用户授权：
+   - 用户在使用小程序时，需要授权小程序获取其微信账号信息。
+
+2. 调用统一下单API：
+   - 小程序后端调用微信支付的统一下单API，生成预支付交易单。这个API会返回一个预支付交易会话标识（prepay_id）。后端封装前端小程序需要的参数并返回。
+
+3. 前端调用支付接口：
+   - 微信支付JS-SDK会调用小程序的`wx.requestPayment`方法，发起支付请求。
+
+4. 用户确认支付：
+   - 用户在支付界面确认支付信息，点击支付按钮。
+
+5. 支付结果回调：
+   - 支付完成后，微信会通过回调通知小程序支付结果。
+
+6. 支付结果处理：
+   - 后端根据支付结果进行相应的业务逻辑处理，比如更新订单状态、发货等。
+
+微信支付流程中，安全性是非常重要的，因此所有的通信都应该使用HTTPS协议，并且敏感信息需要进行加密处理。此外，微信支付还提供了一些安全机制，比如签名验证，以确保交易的安全性。
+</code></pre>
+<h5>18. 项目中对支付超时的订单是如何处理的？</h5>
+<pre class="notranslate"><code class="notranslate">通过spring task定时任务进行处理，每隔一分钟检查一次订单的支付状态，如果超过15分钟还没有支付，则修改订单的状态为“已取消”。
+其实定时任务相关的框架还有很多，比如：quartz、xxljob等。
+</code></pre>
+<h5>19. 聊一下什么是websocket？</h5>
+<pre class="notranslate"><code class="notranslate">WebSocket 是一种网络通信协议，提供了一个全双工通信渠道，通过一个单一的长连接允许服务器主动向客户端发送消息。
+
+WebSocket 的主要特点：
+
+1. 全双工通信：WebSocket 连接允许服务器和客户端之间进行双向通信，即双方都可以发送和接收数据，而不需要像HTTP那样建立新的连接。
+
+2. 持久连接：一旦WebSocket连接建立，它将保持打开状态，直到客户端或服务器端明确关闭它。
+
+3. 低延迟：由于连接是持久的，数据可以实时发送和接收，减少了HTTP请求和响应的开销。
+
+4. 头部开销小：在WebSocket连接建立后，数据传输不需要HTTP那样复杂的头部信息，因此传输效率更高。
+
+5. 适用于实时应用：由于其低延迟和全双工的特性，WebSocket非常适合需要实时通信的应用，如在线游戏、实时聊天应用、股票行情更新等。
+
+WebSocket 的使用场景：
+
+- 实时游戏：玩家之间的实时交互。
+- 聊天应用：即时消息传递。
+- 股票交易平台：实时股票价格更新。
+- 协作工具：多人在线协作编辑文档。
+- 实时通知：如社交媒体的实时更新。
+
+WebSocket 协议通过提供一种简单、高效的实时通信方式，极大地丰富了现代Web应用的功能和用户体验。
+</code></pre>
+<h5>20.jwt的自动续期该如何实现？</h5>
+<pre class="notranslate"><code class="notranslate">可以使用refresh token（刷新令牌）实现，具体操作如下：
+1、用户登录成功后，服务端给客户端发放两个令牌，一个是access token（访问令牌），一个是refresh token（刷新令牌），设置刷新令牌的有效期需要比访问令牌的长
+2、客户端发送的业务请求中，需要携带上面两个令牌到服务端
+3、服务端先校验访问令牌的有效性，
+	如果校验通过，则直接放行；
+	如果校验失败，则继续校验刷新令牌的有效性
+		如果刷新令牌校验通过，则重新生成一对访问令牌和刷新令牌给前端
+		如果刷新令牌校验失败，则返回401
+</code></pre>
+<h5>21.什么是缓存穿透、缓存击穿、缓存雪崩？如何解决</h5>
+<pre class="notranslate"><code class="notranslate">缓存穿透
+	1.什么是缓存穿透
+		缓存穿透是指在缓存系统中，查询一个不存在的数据时，缓存层没有命中，然后请求直接穿透缓存层到达数据库层。
+		当这种查询请求非常多，数据库层的压力会非常大，这可能导致数据库性能急剧下降，甚至崩溃。
+	2.缓存穿透一般出现在什么时候？
+		一般是因为程序受到恶意攻击，才会出现缓存穿透。
+	3.如何解决？
+		缓存穿透的问题并不能彻底解决，只能说一定程度上缓解缓存穿透的情况发生，
+		通常是使用去重+限制访问频率
+		去重：
+			当客户端第一次发起访问不存在的资源的请求时，在访问完数据库后，在缓存层为这个不存在的资源创建缓存，限制一个较短期限的生命周期，当再次有相同的请求访问后返回同样的结果，直到生命周期为0。这样可以显著减少数据库的压力
+		限制访问频率：
+			通过第三方提供的技术进行访问频率的限制，例如：使用Nginx限流
+			Nginx限流，其实是使用Nginx的限流模块来实现。在模块之中，先使用漏桶算法，强制请求以固定的速率被处理，类似于沙漏，而请求则是沙子；
+			也可以通过其中某些模块所模仿的木桶令牌进行限流，要求一次访问只允许固定数量的请求获取木桶令牌，只有拥有木桶令牌的请求才能访问数据库。
+
+缓存击穿
+	1.什么是缓存击穿
+		和缓存穿透有相似之处，但是但它们的原因和表现有所不同。
+		缓存击穿查询的数据是数据库存在的，但由于缓存中的相关数据过期或被清除了，导致在缓存中找不到数据，同时大量请求直接访问数据库，造成性能下降，或奔溃
+	2.缓存击穿一般出现在什么时候？
+		①缓存层数据过期，同时有大量请求同时访问过期的资源
+		②缓存数据被手动删除，同时有大量请求同时访问该资源
+	3.如何解决
+		Ⅰ设置合理的过期时间：
+			根据数据更新频率和业务需求，合理设置缓存的过期时间。
+		Ⅱ缓存预热：
+			对于热点资源，在系统启动或低峰期时，提前加载刷新缓存时间
+		Ⅲ限流和降级：
+			在系统压力过大时，通过限流和降级策略来保护系统
+			
+缓存雪崩
+	1.什么是缓存雪崩
+		是指在缓存系统中，由于大量缓存数据在同一时间过期或被同时清除，导致在这些数据重新加载到缓存之前，所有的请求都必须直接查询数据库，从而对数据库造成巨大的访问压力。
+		这种现象类似于"雪崩"，短时间内请求量激增，可能导致数据库无法承受而崩溃。
+	2.缓存雪崩出现的原因
+		Ⅰ缓存集中过期：如果缓存数据设置了相同的过期时间，它们将在同一时间过期，导致大量请求同时穿透缓存。
+		Ⅱ缓存服务故障：缓存服务如果发生故障，比如宕机或重启，所有缓存数据可能丢失，导致请求直接访问数据库。
+		Ⅲ高并发请求：在高并发场景下，缓存层可能无法承受巨大的访问压力，导致缓存服务不可用。
+	3.如何解决
+		Ⅰ分散缓存过期时间：
+			使用随机或分散的过期时间，避免大量缓存数据同时过期。
+		Ⅱ缓存持久化：
+			在缓存服务故障时，可以使用持久化机制将缓存数据存储在磁盘或其他存储系统中，以便快速恢复。
+		Ⅲ限流和降级：
+			在系统压力过大时，通过限流和降级策略来保护系统。
+</code></pre></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://ykyb-lwj.github.io/like"> 玛卡巴卡的博客 </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","ykyb-lwj/like");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
